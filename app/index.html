@@ -28,11 +28,13 @@
    <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav navbar-right" ng-show="isUserLoggedIn">
             <li><a href="#/user">Profile</a></li>
-			<li><a href="#/main" ng-click="logout()">Log out</a></li>
+			      <li><a href="#/main" ng-click="logout()">Log out</a></li>
+            <li><a href="#/uploadNote">New note</a></li>
+
           </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="isUserLoggedIn">
             <li><a href="#/signup">Sign up!</a></li>
-   <li><a href="#/login">Login</a></li>
+            <li><a href="#/login">Login</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -40,20 +42,15 @@
         </div>
       </div>
     </div>
-
+<div ng-controller="sideBarController"
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#browse">Faculty for Mathematics and Physics</a></li>
-            <li><a href="#browse">Faculty for Computer Science and Informatics</a></li>
-            <li><a href="#browse">Faculty of Engineering</a></li>
-            <li><a href="#browse">Medical Faculty</a></li>
-			<li><p><strong>Auth:</strong> {{auth}}</p></li>
-			<li><p><strong>UserL:</strong> {{userL}}</p></li>
-			<li><p><strong>UserB:</strong> {{userB}}</p></li>
-          </ul>
+            <li  ng-repeat="uni in unis"><a href="#browseFaculties/{{uni.name}}">{{uni.name}}</a></li>
+			</ul>
         </div>
+</div>
 		<div class="view-container">
           <div ng-view class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main view-frame">
           
@@ -70,12 +67,13 @@
 
   
   <script src="js/jquery.min.js"></script>
+  <script src="../bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script> 
   <script src="../bower_components/angular/angular.js"></script>
-  <script src="../bower_components/angular-route/angular-route.js"></script>
-  <script src="../bower_components/angular-resource/angular-resource.js"></script>
+  <script src="../bower_components/ng-file-upload/angular-file-upload.min.js"></script> 
   <script src="../bower_components/angular-animate/angular-animate.js"></script>
   <script src="../bower_components/angular-route/angular-route.js"></script>
   <script src="../bower_components/angular-resource/angular-resource.js"></script>
+  <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
   <script src="../bower_components/firebase/firebase.js"></script>
   <script src="../bower_components/angularfire/angularfire.js"></script>
   <script src="../bower_components/firebase-simple-login/firebase-simple-login.js"></script>
@@ -94,9 +92,7 @@
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-XXXX-Y', {
-		'cookieDomain': 'none'
-	  });
+	  ga('create', 'UA-51106464-1', 'zapiskinotes.herokuapp.com');
 	  //if (user_id !== undefined){
 		//ga(‘set’, ‘&uid’, user_id); // Nastavi User-ID z uporabo niza user_id vpisanega uporabnika.
 	  //}
